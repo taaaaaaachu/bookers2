@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container px-5 px-sm-0">
     <div class ="row">
-        <div class="col-lg-5">
-        <%= render 'list' %>
+        <div class="col-md-3">
+        <%= render 'list', book: @book, user: @user %>
         </div>
-        <table class="table table-hover col-lg-7">
+        <table class="table table-hover col-md-8 offset-md-1">
             <thead>
                 <tr>
                     <th scope="col">#</th>

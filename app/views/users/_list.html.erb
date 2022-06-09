@@ -1,37 +1,26 @@
-<!--<div class="container">-->
-    <!--<div class="row">-->
-      <!--<div class="">-->
-        <p class="h2">User info</p>
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-        <p class="h2">New book</p>
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
+<p class="h2">User info</p>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <table class="table table-hover">
+    <tbody>
+      <tr>
+        <th scope="row">name</th>
+        <th scope="row"><%= current_user.name %></th>
+
+      </tr>
+      <tr>
+        <th scope="row">introduction</th>
+        <th scope="row"><%= current_user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary btn-block ' do %>
+  <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+<p class="h2">New book</p>
+  <%= form_with model: book do |f| %>
+    <p>title</p>
+      <%= f.text_field :title, class: 'form-control' %>
+    <p>Opinion</p>
+      <%= f.text_area :body, class: 'form-control' %>
+    <%= f.submit 'CreateBook', class: 'btn btn-success mt-2'  %>
+  <% end %>
