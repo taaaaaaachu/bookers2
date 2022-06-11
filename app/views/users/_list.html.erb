@@ -4,17 +4,23 @@
     <tbody>
       <tr>
         <th scope="row">name</th>
-        <th scope="row"><%= current_user.name %></th>
+        <th scope="row"><%= user.name %></th>
 
       </tr>
       <tr>
         <th scope="row">introduction</th>
-        <th scope="row"><%= current_user.introduction %></th>
+        <th scope="row"><%= user.introduction %></th>
       </tr>
     </tbody>
   </table>
-  <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary btn-block ' do %>
-  <i class="fa-solid fa-user-gear"></i>
+  <% if current_user == user %>
+    <%= link_to edit_user_path(current_user.id), class: 'btn btn-outline-secondary btn-block ' do %>
+    <i class="fa-solid fa-user-gear"></i>
+    <% end %>
+  <% else %>
+    <%= link_to user_path(current_user.id), class: 'btn btn-outline-secondary btn-block ' do %>
+    <i class="fa-solid fa-user-gear"></i>
+    <% end %>
   <% end %>
 <p class="h2">New book</p>
   <%= form_with model: book do |f| %>

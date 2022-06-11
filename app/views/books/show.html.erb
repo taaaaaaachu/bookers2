@@ -1,7 +1,33 @@
-<div>
-  <p>ショップ名：<%= @book.title %></p>
-  <p>説明：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
-  <p>投稿日：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/list', book: @book, user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= link_to  user_path(@user.id), method: :get do %>
+            <%= image_tag @user.get_profile_image(100,100) %><br>
+            <%= @user.name %>
+            <% end %>
+            </td>
+            <td><%= link_to @book_find.title, book_path(@book_find.id) %></td>
+            <td><%= @book_find.body %></td>
+            <% if current_user == @user %>
+              <td><%= link_to "Edit", edit_book_path(@book_find.id), class:"btn-sm btn-success" %></td>
+              <td><%= link_to "Destroy", book_path(@book_find), method: :delete, "data-confirm" => "本当に削除しますか?", class:"btn-sm btn-danger" %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
